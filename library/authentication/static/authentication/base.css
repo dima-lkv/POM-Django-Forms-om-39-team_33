@@ -12,6 +12,7 @@
   width: 100vw;
   margin: 0 auto;
 }
+
 .side-menu {
   height: 100px;
   z-index: 10;
@@ -31,6 +32,7 @@
   width: 100vw;
   text-align: center;
 }
+
 .fullscreen {
   z-index: 2;
   margin: auto 0;
@@ -39,21 +41,20 @@
   background: #363535;
   display: flex;
 }
+
 .my-btn {
   display: block;
   font-size: 100px;
   text-decoration: none;
   color: #8ca0e1;
-
-  &:hover {
-    transition: all 200ms ease;
-    transform: translate(20px,20px);
-  }
-
-  :not(&hover) {
-    -webkit-transition: all 200ms ease;
-    transition: all 200ms ease;
-  }
+}
+.my-btn:hover {
+  transition: all 200ms ease;
+  transform: translate(20px, 20px);
+}
+:not(.my-btnhover) {
+  -webkit-transition: all 200ms ease;
+  transition: all 200ms ease;
 }
 
 .block-content {
@@ -76,10 +77,14 @@
   display: flex;
   left: 0;
   width: 70%;
-
   background-image: url("../../static/authentication/images/softserve.jpg");
-  background-color: #cccccc; /* Used if the image is unavailable */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
+  background-color: #cccccc;
+  /* Used if the image is unavailable */
+  background-position: center;
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
   background-size: cover;
 }
+
+/*# sourceMappingURL=base.css.map */
