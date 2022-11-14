@@ -1,0 +1,13 @@
+{% extends 'authentication/base.html' %}
+{% load static %}
+
+{% block style %}
+    <link rel="stylesheet" href="{% static 'authentication/home.css' %}">
+{% endblock style %}
+
+{% block content %}
+    <div class="block-content">
+        <a class="my-btn" href="/login">login</a>
+        <a class="my-btn" href="/register">register</a>
+    </div>
+{% endblock content %}

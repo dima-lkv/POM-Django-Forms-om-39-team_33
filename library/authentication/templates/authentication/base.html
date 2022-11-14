@@ -5,28 +5,24 @@
     <meta charset="UTF-8">
     <title>Home</title>
     <link rel="stylesheet" href="{% static 'authentication/base.css' %}">
+    {% block style %}
+    {% endblock style %}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-<div class="side-menu">
-    <div class="team_name">TEAM-15</div>
-</div>
 <div class="wrapper">
+<div class="side-menu">
+    <nav class="team_name"><a href="/" style="text-decoration: none">TEAM-15</a></nav>
+</div>
+
     <section class="fullscreen">
 
+        <div class="box"></div>
 
-        <div class="box">
-            <div ><img class="dot" src="{% static 'menu/img/dot.png' %}" width="150px" alt="" ></div>
-            <div class="pacman"><img src="{% static 'menu/img/pacman.png' %}" alt="" ></div>
-        </div>
+            {% block content %}
 
-        <div class="block-content">
-            <a class="my-btn" href="/style1">login</a>
-            <a class="my-btn" href="/style2">register</a>
-        </div>
+            {% endblock content %}
     </section>
-
-
 
 </div>
 </body>
