@@ -11,6 +11,7 @@
   height: 100vh;
   width: 100vw;
   margin: 0 auto;
+  background: #363535;
 }
 
 .side-menu {
@@ -38,8 +39,8 @@
   margin: auto 0;
   min-width: 100vw;
   height: 100vh;
-  background: #363535;
   display: flex;
+  position: absolute;
 }
 
 .my-btn {
@@ -57,19 +58,6 @@
   transition: all 200ms ease;
 }
 
-.block-content {
-  width: 30%;
-  float: left;
-  z-index: 3;
-  max-width: 800px;
-  height: 90vh;
-  flex: 1 1 auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .box {
   padding: 0;
   height: 100%;
@@ -77,6 +65,7 @@
   display: flex;
   left: 0;
   width: 70%;
+  position: absolute;
   background-image: url("../../static/authentication/images/softserve.jpg");
   background-color: #cccccc;
   /* Used if the image is unavailable */
