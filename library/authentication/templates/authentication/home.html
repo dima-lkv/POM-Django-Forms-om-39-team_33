@@ -8,7 +8,24 @@
 {% block content %}
 
     <div class="container-login100">
-        {% if request.user.is_authenticated %}
+
+        <div class="text text-up align-text-top" style="margin: 30px; position: absolute; top: 0;">
+
+            {% if request.path == '/author/' %}
+                <h1>Authors</h1>
+            {% endif %}
+
+            {% if request.path == '/book/' %}
+                <h1>Books</h1>
+            {% endif %}
+
+            {% if request.path == '/order/' %}
+                <h1>Orders</h1>
+            {% endif %}
+
+        </div>
+
+        {% if request.user.is_authenticated and request.user.role == 1 %}
 
             <a href="{% url 'logout' %}">
                 <button type="button" class="btn btn-danger"
@@ -16,21 +33,121 @@
                 </button>
             </a>
 
-            <a href="{% url 'author' %}">
-                <button type="button" class="btn btn-info"
-                        style="position: absolute; left: 0; top: 0; margin: 30px 0 0 30px">Author
-                </button>
-            </a>
-            <a href="{% url 'book' %}">
-                <button type="button" class="btn btn-info"
-                        style="position: absolute; left: 0; top: 0; margin: 30px 0 0 130px">Book
-                </button>
-            </a>
-            <a href="{% url 'order' %}">
-                <button type="button" class="btn btn-info"
-                        style="position: absolute; left: 0; top: 0; margin: 30px 0 0 215px">Order
-                </button>
-            </a>
+            {% if request.path == '/' %}
+                <a href="{% url 'author' %}">
+                    <button type="button" class="btn btn-info"
+                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 30px">Authors
+                    </button>
+                </a>
+
+                <a href="{% url 'book' %}">
+                    <button type="button" class="btn btn-info"
+                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 135px">Books
+                    </button>
+                </a>
+
+                <a href="{% url 'order' %}">
+                    <button type="button" class="btn btn-info"
+                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 220px">Orders
+                    </button>
+                </a>
+            {% endif %}
+
+            {% if request.path == '/author/' %}
+                <a href="{% url 'home' %}">
+                    <button type="button" class="btn btn-success"
+                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 30px">Home
+                    </button>
+                </a>
+
+                <a href="{% url 'book' %}">
+                    <button type="button" class="btn btn-info"
+                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 135px">Books
+                    </button>
+                </a>
+
+                <a href="{% url 'order' %}">
+                    <button type="button" class="btn btn-info"
+                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 220px">Orders
+                    </button>
+                </a>
+            {% endif %}
+            {% if request.path == '/book/' %}
+                <a href="{% url 'home' %}">
+                    <button type="button" class="btn btn-success"
+                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 30px">Home
+                    </button>
+                </a>
+
+                <a href="{% url 'author' %}">
+                    <button type="button" class="btn btn-info"
+                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 120px">Authors
+                    </button>
+                </a>
+
+                <a href="{% url 'order' %}">
+                    <button type="button" class="btn btn-info"
+                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 215px">Orders
+                    </button>
+                </a>
+
+            {% endif %}
+
+            {% if request.path == '/order/' %}
+                <a href="{% url 'home' %}">
+                    <button type="button" class="btn btn-success"
+                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 30px">Home
+                    </button>
+                </a>
+
+                <a href="{% url 'author' %}">
+                    <button type="button" class="btn btn-info"
+                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 130px">Authors
+                    </button>
+                </a>
+
+                <a href="{% url 'book' %}">
+                    <button type="button" class="btn btn-info"
+                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 235px">Books
+                    </button>
+                </a>
+
+            {% endif %}
+
+        {% elif request.user.is_authenticated %}
+
+            {% if request.path == '/book/' %}
+
+                <a href="{% url 'home' %}">
+                    <button type="button" class="btn btn-success"
+                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 30px">Home
+                    </button>
+                </a>
+
+                <a href="{% url 'logout' %}">
+                    <button type="button" class="btn btn-danger"
+                            style="position: absolute; right: 0; top: 0; margin: 30px 30px">Log out
+                    </button>
+                </a>
+
+            {% endif %}
+
+            {% if request.path == '/' %}
+
+                <a href="{% url 'book' %}">
+                    <button type="button" class="btn btn-info"
+                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 30px">Books
+                    </button>
+                </a>
+
+                <a href="{% url 'logout' %}">
+                    <button type="button" class="btn btn-danger"
+                            style="position: absolute; right: 0; top: 0; margin: 30px 30px">Log out
+                    </button>
+                </a>
+
+            {% endif %}
+
 
         {% else %}
 
@@ -45,6 +162,13 @@
                 </button>
             </a>
 
+
         {% endif %}
+
+        {% block extra %}
+
+        {% endblock extra %}
+
     </div>
+
 {% endblock content %}

@@ -1,24 +1,20 @@
-{% extends 'authentication/base.html' %}
+{% extends 'authentication/home.html' %}
 
 {% load static %}
 {% block title %}
-    Login
+    Add Author
 {% endblock title %}
 
-{% block content %}
+{% block extra %}
     <div class="limiter">
         <div class="container-login100">
-            <div class="wrap-login100" style="padding-top: 80px">
-                <div class="login100-pic js-tilt" data-tilt style="padding-top:1px">
-                    <a href="/">
-                        <img src="{% static 'authentication/images/img-01.png' %}" alt="IMG" href="{% url 'home' %}">
-                    </a>
-                </div>
+            <div class="wrap-login100" style="padding-top: 80px; width: fit-content">
 
-                <form action="{% url 'create_author' %}" class="login100-form validate-form" method="post">
+                <form action="{% url 'create_author' %}" class="login100-form validate-form" method="post"
+                      style="background: none; margin-left: 25px">
                     {% csrf_token %}
                     <span class="login100-form-title">
-						Create Author
+						Add Author
 					</span>
 
                     <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
@@ -54,4 +50,4 @@
             </div>
         </div>
     </div>
-{% endblock content %}
+{% endblock extra %}
