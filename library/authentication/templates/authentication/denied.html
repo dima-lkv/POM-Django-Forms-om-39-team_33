@@ -32,12 +32,12 @@
                 </button>
             </a>
 
-        {% else %}
-
-            <a style="margin: 30px; position: absolute;" href="{% url 'login' %}">
-                <div class="text-white text-up align-text-top"><h3>To continue
-                    please authorize</h3></div>
+            <a style="margin: 30px; position: absolute;" href="{% url 'home' %}">
+                <div class="text-white text-up align-text-top"><h3>You have no permission to view this page</h3></div>
             </a>
+
+
+        {% else %}
 
             <a href="{% url 'login' %}">
                 <button type="button" class="btn btn-success"

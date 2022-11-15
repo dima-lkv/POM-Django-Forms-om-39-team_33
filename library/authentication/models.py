@@ -24,6 +24,7 @@ class CustomUserManager(BaseUserManager):
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
+        user.is_active = True
         user.save()
         return user
 
@@ -147,6 +148,8 @@ class CustomUser(AbstractBaseUser):
         """
         if len(first_name) <= 20 and len(middle_name) <= 20 and len(last_name) <= 20 and len(email) <= 100 and len(
                 email.split('@')) == 2 and len(CustomUser.objects.filter(email=email)) == 0:
+            print(first_name, last_name, middle_name, email, password)
+
             custom_user = CustomUser(email=email, password=password, first_name=first_name, middle_name=middle_name,
                                      last_name=last_name)
             custom_user.save()
