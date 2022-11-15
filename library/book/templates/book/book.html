@@ -1,0 +1,108 @@
+{% extends 'authentication/base.html' %}
+
+{% load static %}
+{% block title %}
+    table
+{% endblock title %}
+
+{% block content %}
+    <div class="limiter">
+        <div class="container-login100">
+
+            <a href="/login">
+                <button type="button" class="btn btn-success"
+                        style="position: absolute; right: 0; top: 0; margin: 30px 130px">Log in
+                </button>
+            </a>
+            <a href="/logout">
+                <button type="button" class="btn btn-danger"
+                        style="position: absolute; right: 0; top: 0; margin: 30px 30px">Log out
+                </button>
+            </a>
+
+            <a href="/author">
+                <button type="button" class="btn btn-info"
+                        style="position: absolute; left: 0; top: 0; margin: 30px 0 0 30px">Author
+                </button>
+            </a>
+            <a href="/book">
+                <button type="button" class="btn btn-info"
+                        style="position: absolute; left: 0; top: 0; margin: 30px 0 0 130px">Book
+                </button>
+            </a>
+            <a href="/order">
+                <button type="button" class="btn btn-info"
+                        style="position: absolute; left: 0; top: 0; margin: 30px 0 0 215px">Order
+                </button>
+            </a>
+
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col"><a href="/">First</a></th>
+                    <th scope="col"><a href="/login">Last</a></th>
+                    <th scope="col"><a href="/register">Handle</a></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+{% endblock content %}

@@ -1,13 +1,38 @@
 {% extends 'authentication/base.html' %}
-{% load static %}
 
-{% block style %}
-    <link rel="stylesheet" href="{% static 'authentication/home.css' %}">
-{% endblock style %}
+{% load static %}
+{% block title %}
+    table
+{% endblock title %}
 
 {% block content %}
-    <div class="block-content">
-        <a class="my-btn" href="/login">login</a>
-        <a class="my-btn" href="/register">register</a>
+
+    <div class="container-login100">
+        <a href="/login">
+            <button type="button" class="btn btn-success"
+                    style="position: absolute; right: 0; top: 0; margin: 30px 130px">Log in
+            </button>
+        </a>
+        <a href="/logout">
+            <button type="button" class="btn btn-danger"
+                    style="position: absolute; right: 0; top: 0; margin: 30px 30px">Log out
+            </button>
+        </a>
+
+        <a href="/author">
+            <button type="button" class="btn btn-info"
+                    style="position: absolute; left: 0; top: 0; margin: 30px 0 0 30px">Author
+            </button>
+        </a>
+        <a href="/book">
+            <button type="button" class="btn btn-info"
+                    style="position: absolute; left: 0; top: 0; margin: 30px 0 0 130px">Book
+            </button>
+        </a>
+        <a href="/order">
+            <button type="button" class="btn btn-info"
+                    style="position: absolute; left: 0; top: 0; margin: 30px 0 0 215px">Order
+            </button>
+        </a>
     </div>
 {% endblock content %}
