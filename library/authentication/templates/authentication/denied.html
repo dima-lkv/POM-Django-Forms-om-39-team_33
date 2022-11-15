@@ -16,24 +16,20 @@
                 </button>
             </a>
 
-            <a href="{% url 'author' %}">
-                <button type="button" class="btn btn-info"
-                        style="position: absolute; left: 0; top: 0; margin: 30px 0 0 30px">Author
+            <a href="{% url 'home' %}">
+                <button type="button" class="btn btn-success"
+                        style="position: absolute; left: 0; top: 0; margin: 30px 0 0 30px">Home
                 </button>
             </a>
+
+
             <a href="{% url 'book' %}">
                 <button type="button" class="btn btn-info"
                         style="position: absolute; left: 0; top: 0; margin: 30px 0 0 130px">Book
                 </button>
             </a>
-            <a href="{% url 'order' %}">
-                <button type="button" class="btn btn-info"
-                        style="position: absolute; left: 0; top: 0; margin: 30px 0 0 215px">Order
-                </button>
-            </a>
-
             <a style="margin: 30px; position: absolute;" href="{% url 'home' %}">
-                <div class="text-white text-up align-text-top"><h3>You have no permission to view this page</h3></div>
+                <div class="text-white text-up align-text-top"><h3>{{ text }}</h3></div>
             </a>
 
 
