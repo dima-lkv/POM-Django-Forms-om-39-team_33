@@ -3,10 +3,6 @@ from django.shortcuts import render, redirect
 from .models import CustomUser
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
-from .backend import CustomAuthentication
-
-
-# from django.contrib.auth.forms import UserCreationForm
 
 
 def startPage(request):
@@ -48,7 +44,7 @@ def loginPage(request):
             login(request, user)
             return redirect('home')
         else:
-            messages.error(request, 'Email or Password does not exist.')
+            messages.error(request, 'Failed to log in. Try again')
 
     return render(request, 'authentication/log.html')
 

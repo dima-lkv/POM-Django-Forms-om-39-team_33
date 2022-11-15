@@ -12,7 +12,8 @@ def showBooks(request):
 def showOrderedBooks(request, pk):
     # reversed()
     books = (Book.objects.order_by(pk))
-    return render(request, 'book/book.html', {'books': books})
+    name = 'Books'
+    return render(request, 'book/book.html', {'books': books, 'name': name})
 
 
 def showSpecificBook(request, pk):
