@@ -2,10 +2,12 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('', views.startPage),
-    path('register/', views.register_page),
-    path('login/', views.login_page),
+    path('', views.startPage, name='home'),
+    path('register/', views.registerPage, name='register'),
+    path('login/', views.loginPage, name='login'),
+    path('logout/', views.logoutUser, name='logout'),
     path('author/', include('author.urls')),
     path('book/', include('book.urls')),
+    path('order/', include('order.urls')),
 
 ]
