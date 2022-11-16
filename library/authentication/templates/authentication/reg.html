@@ -17,7 +17,7 @@
 
                 <form action="{% url 'register' %}" class="login100-form validate-form" method="post">
                     {% csrf_token %}
-					<span class="login100-form-title">
+                    <span class="login100-form-title">
 						Sign Up
 					</span>
 
@@ -64,17 +64,19 @@
                     <fieldset class="form-group">
                         <div class="row">
                             <div class="col-sm-10">
+
+
                                 <div class="form-check" style="margin: 10px 0 0 100px">
-                                    <input class="form-check-input" type="radio" name="role" id="role"
-                                           value=0 checked>
-                                    <label class="form-check-label" for="role" style="color: white;">
+                                    <input class="form-check-input" type="radio" name="role"
+                                           id="exampleRadios1" value="0" checked>
+                                    <label class="form-check-label" for="exampleRadios1" style="color: white;">
                                         Guest
                                     </label>
                                 </div>
-                                <div class="form-check checked" style="margin-left: 100px">
-                                    <input class="form-check-input" type="radio" name="role" id="role"
-                                           value=1 >
-                                    <label class="form-check-label" for="role" style="color: white;">
+                                <div class="form-check" style="margin-left: 100px">
+                                    <input class="form-check-input" type="radio" name="role"
+                                           id="exampleRadios2" value="1">
+                                    <label class="form-check-label" for="exampleRadios2" style="color: white;">
                                         Librarian
                                     </label>
                                 </div>
