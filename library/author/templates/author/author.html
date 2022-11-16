@@ -6,29 +6,42 @@
 {% endblock title %}
 
 {% block extra %}
-            <table class="table table-dark">
-                <thead>
-                <tr>
-                    <th scope="col"><a href="/books">id</a></th>
-                    <th scope="col"><a href="/">First</a></th>
-                    <th scope="col"><a href="/login">Last</a></th>
-                    <th scope="col"><a href="/register">Middle</a></th>
+    <table class="table table-dark">
+        <thead>
+        <tr>
+            <th scope="col"><a href="/books">id</a></th>
+            <th scope="col"><a href="/">First</a></th>
+            <th scope="col"><a href="/login">Last</a></th>
+            <th scope="col"><a href="/register">Middle</a></th>
 
-                    <th scope="col"><a href="/register">Books</a></th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for author in authors %}
-                    <tr>
-                        <td>{{ author.id }}</td>
-                        <td>{{ author.name }}</td>
-                        <td>{{ author.surname }}</td>
-                        <td>{{ author.patronymic }}</td>
+            <th scope="col"><a href="/register">Books</a></th>
+            <th scope="col"><a href="/register"></a></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for author in authors %}
+            <tr>
+                <td>{{ author.id }}</td>
+                <td>{{ author.name }}</td>
+                <td>{{ author.surname }}</td>
+                <td>{{ author.patronymic }}</td>
 
-                        <td>{{ author.books }}</td>
+                <td>{{ author.books }}</td>
+                {% if author.books %}
+                    <td>
+                        <form action="{% url 'remove_author' %}" method="post">
+                            {% csrf_token %}
+                            <input style="color: red;" type="submit" class="btn" name="author_id"
+                                   value={{ author.id }}>
+                        </form>
+                    </td>
 
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+                {% endif %}
+
+
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock extra %}
