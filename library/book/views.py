@@ -8,7 +8,7 @@ def showBooks(request):
     books = Book.objects.all()
     return render(request, 'book/book.html', {'books': books})
 
-
+#
 def showOrderedBooks(request, pk):
     # reversed()
     books = (Book.objects.order_by(pk))
