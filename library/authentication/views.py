@@ -56,9 +56,13 @@ def logoutUser(request):
 
 @login_required(login_url='login')
 def pageUser(request):
-    if request.user.role != 1:
-        text = 'You have no permission to view this page'
-        return render(request, 'authentication/denied.html', {'text': text})
+    # if request.user.role != 1:
+    #     text = 'You have no permission to view this page'
+    #     return render(request, 'authentication/denied.html', {'text': text})
     users = CustomUser.objects.all()
     return render(request, 'authentication/user.html', {'users': users})
+
+def oneUser(request, id):
+    user = CustomUser.objects.get(id=id)
+    return render(request, 'authentication/specificUser.html', {'user': user})
 

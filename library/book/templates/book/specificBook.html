@@ -1,9 +1,33 @@
-{% extends 'home.html' %}
+{% extends 'authentication/home.html' %}
 
+{% load static %}
 {% block title %}
-    {{ book.name }}
+    book Info {{ book.id }}
 {% endblock title %}
 
-{% block content %}
+{% block extra %}
+            <table class="table table-dark">
+                <thead>
+                <tr>
+                    <th scope="col"><a>id</a></th>
+                    <th scope="col"><a>name</a></th>
+                    <th scope="col"><a>description</a></th>
+                    <th scope="col"><a>count</a></th>
+                    <th scope="col"><a>author</a></th>
 
-{% endblock content %}
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ book.id }}</td>
+                        <td>{{ book.name }}</td>
+                        <td>{{ book.description}}</td>
+                        <td>{{ book.count }}</td>
+                        <td>{{ book.authors }}</td>
+
+
+                    </tr>
+                </tbody>
+            </table>
+
+{% endblock extra %}

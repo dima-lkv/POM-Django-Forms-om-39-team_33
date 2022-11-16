@@ -13,10 +13,6 @@
                     <th scope="col"><a>first_name</a></th>
                     <th scope="col"><a>middle_name</a></th>
                     <th scope="col"><a>last_name</a></th>
-                    <th scope="col"><a>email</a></th>
-                    <th scope="col"><a>created_at</a></th>
-                    <th scope="col"><a>updated_at</a></th>
-                    <th scope="col"><a>role</a></th>
                     <th scope="col"><a>is_active</a></th>
 
                 </tr>
@@ -24,14 +20,10 @@
                 <tbody>
                 {% for user in users %}
                     <tr>
-                        <td>{{ user.id }}</td>
+                        <td><a href="{% url 'specific' id=user.id %}">{{ user.id }}</a></td>
                         <td>{{ user.first_name }}</td>
                         <td>{{ user.middle_name }}</td>
                         <td>{{ user.last_name }}</td>
-                        <td>{{ user.email }}</td>
-                        <td>{{ user.created_at }}</td>
-                        <td>{{ user.updated_ad }}</td>
-                        <td>{{ user.role }}</td>
                         <td>{{ user.is_active }}</td>
 
 

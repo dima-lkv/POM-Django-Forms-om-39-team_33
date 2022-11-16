@@ -16,6 +16,6 @@ def showOrderedBooks(request, pk):
     return render(request, 'book/book.html', {'books': books, 'name': name})
 
 
-def showSpecificBook(request, pk):
-    book = Book.objects.get(id=pk)
-    return render(request, 'book/', {'book': book})
+def showSpecificBook(request, id):
+    book = Book.objects.get(id=id)
+    return render(request, 'book/specificBook.html', {'book': book})
