@@ -1,5 +1,4 @@
-from django.db import models
-
+from django.db import models, transaction
 
 class Book(models.Model):
     """
@@ -25,7 +24,11 @@ class Book(models.Model):
         Magic method is redefined to show all information about Book.
         :return: book id, book name, book description, book count, book authors
         """
-        return f"'id': {self.id}, 'name': '{self.name}', 'description': '{self.description}', 'count': {self.count}, 'authors': {[author.id for author in self.authors.all()]}"
+        return f"'id': {self.id}," \
+               f" 'name': '{self.name}'," \
+               f" 'description': '{self.description}'," \
+               f" 'count': {self.count}," \
+               f" 'authors': {[author.id for author in self.authors.all()]}"
 
     def __repr__(self):
         """
@@ -74,10 +77,12 @@ class Book(models.Model):
         book.name = name
         book.description = description
         book.count = count
-        if (authors is not None):
-            for elem in authors:
-                book.authors.add(elem)
-        book.save()
+        with transaction.atomic():
+            book.save()
+            if (authors is not None):
+                for elem in authors:
+                    book.authors.add(elem)
+            book.save()
         return book
 
     def to_dict(self):

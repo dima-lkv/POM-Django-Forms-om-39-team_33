@@ -13,6 +13,7 @@
             <th scope="col"><a href="{% url 'book' %}name/">Name</a></th>
             <th scope="col"><a href="{% url 'book' %}description/">Description</a></th>
             <th scope="col"><a href="{% url 'book' %}count/">Count</a></th>
+            <th scope="col"><a href="{% url 'book' %}author/">Author</a></th>
         </tr>
         </thead>
         <tbody>
@@ -22,6 +23,8 @@
                 <td>{{ book.name }}</td>
                 <td>{{ book.description }}</td>
                 <td>{{ book.count }}</td>
+                <td>{{ book.authors }}</td>
+
             </tr>
         {% endfor %}
         </tbody>
