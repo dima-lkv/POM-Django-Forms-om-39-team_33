@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .models import CustomUser
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 
 
 def startPage(request):
@@ -52,3 +53,12 @@ def loginPage(request):
 def logoutUser(request):
     logout(request)
     return redirect('login')
+
+@login_required(login_url='login')
+def pageUser(request):
+    if request.user.role != 1:
+        text = 'You have no permission to view this page'
+        return render(request, 'authentication/denied.html', {'text': text})
+    users = CustomUser.objects.all()
+    return render(request, 'authentication/user.html', {'users': users})
+

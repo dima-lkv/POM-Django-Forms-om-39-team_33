@@ -7,8 +7,9 @@ urlpatterns = [
     path('register/', views.registerPage, name='register'),
     path('login/', views.loginPage, name='login'),
     path('logout/', views.logoutUser, name='logout'),
-    path('author/', include('author.urls'), name='author'),
-    path('book/', include('book.urls'), name='book'),
-    path('order/', include('order.urls'), name='order'),
+    path('user/', views.pageUser, name='user'),
+    path('author/', include('author.urls')),
+    path('book/', include('book.urls')),
+    path('order/', include('order.urls')),
 
 ]
