@@ -5,7 +5,9 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='login')
 def showBooks(request):
-    books_query = Book.objects.order_by('id')
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    books_query = Book.objects.filter(name__name__icontains=q)
+    # books_query = Book.objects.order_by('id')
     book_author_zip = zip(books_query, get_authors(books_query))
     return render(request, 'book/book.html', {'book_author_zip': book_author_zip})
 

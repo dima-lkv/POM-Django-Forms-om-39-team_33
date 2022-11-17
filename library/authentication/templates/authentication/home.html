@@ -95,6 +95,30 @@
 
 
         {% elif request.user.is_authenticated %}
+            <a href="{% url 'user' %}">
+                <button type="button" {% if request.path == '/user/' %} disabled {% endif %} class="btn btn-info"
+                        style="position: absolute; left: 0; top: 0; margin: 30px 0 0 430px; width: 90px">Users
+                </button>
+            </a>
+
+            <a href="{% url 'order' %}">
+                <button type="button" {% if request.path == '/order/' %} disabled {% endif %} class="btn btn-info"
+                        style="position: absolute; left: 0; top: 0; margin: 30px 0 0 330px; width: 90px">Orders
+                </button>
+            </a>
+
+            <a href="{% url 'book' %}">
+                <button type="button" {% if request.path == '/book/' %} disabled {% endif %} class="btn btn-info"
+                        style="position: absolute; left: 0; top: 0; margin: 30px 0 0 230px; width: 90px">Books
+                </button>
+            </a>
+
+            <a href="{% url 'logout' %}">
+                <button type="button" class="btn btn-danger"
+                        style="position: absolute; right: 0; top: 0; margin: 30px">Logout
+                </button>
+            </a>
+
 
         {% else %}
 
