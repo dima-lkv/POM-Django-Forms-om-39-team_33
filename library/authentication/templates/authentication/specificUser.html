@@ -23,13 +23,11 @@
                             <div class="mb-3 d-flex justify-content-between">
                                 <div>
                                     <span class="me-3">USER ID: {{ user.id }}</span>
-                                    <span class="badge rounded-pill bg-info">
                                     {% if user.role == 1 %}
-                                        Admin
+                                        <span class="badge rounded-pill bg-danger">Librarian</span>
                                     {% else %}
-                                        Guest
+                                        <span class="badge rounded-pill bg-info">User</span>
                                     {% endif %}
-                                </span>
                                 </div>
                             </div>
                             <table class="table table-borderless">
@@ -55,41 +53,45 @@
                             </table>
                         </div>
                     </div>
-                    <!-- Payment -->
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <h3 class="h6">User orders</h3>
-                                    {% for order in orders %}
-                                        <p>
-                                            ID: {{ order.id }} Created at: {{ order.created_at }}
-                                            <span class="badge bg-danger rounded-pill">DEBT</span></p>
-                                    {% endfor %}
+                    {% if request.user.role == 1 %}
+
+                        <!-- Payment -->
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h3 class="h6">User orders</h3>
+                                        {% for order in orders %}
+                                            <p>
+                                                ID: {{ order.id }} Created at: {{ order.created_at }}
+                                                <span class="badge bg-danger rounded-pill">DEBT</span></p>
+                                        {% endfor %}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4">
-                    <div class="card mb-4">
-                        <!-- Orders Information -->
-                        <div class="card-body">
-                            <h3 class="h6">Orders Information</h3>
-                            <strong>Order IDs:</strong>
-                            <span>
-                                {% for order in orders %} {{ order.id }}, {% endfor %}
-                                <i class="bi bi-box-arrow-up-right"></i> </span>
-                            <hr>
-                            <h3 class="h6"><strong>Ordered books:</strong></h3>
-                            <address>
-                                {% for order in orders %} <a href="{% url 'showSpecificBook' id=order.book.id %}" style="color: black; font-size: 20px">{{ order.book.name }}</a> <br> Complete to
-                                    {{ order.plated_end_at }} <br><br> {% endfor %}<br>
-                            </address>
                         </div>
-                    </div>
-                </div>
+                        <div class="col-lg-4">
+                            <div class="card mb-4">
+                                <!-- Orders Information -->
+                                <div class="card-body">
+                                    <h3 class="h6">Orders Information</h3>
+                                    <strong>Order IDs:</strong>
+                                    <span>
+                                {% for order in orders %} {{ order.id }}, {% endfor %}
+                                        <i class="bi bi-box-arrow-up-right"></i> </span>
+                                    <hr>
+                                    <h3 class="h6"><strong>Ordered books:</strong></h3>
+                                    <address>
+                                        {% for order in orders %}<a href="{% url 'showSpecificBook' id=order.book.id %}"
+                                                                    style="color: black; font-size: 20px">{{ order.book.name }}</a>
+                                            <br> Complete to
+                                            {{ order.plated_end_at }} <br><br> {% endfor %}<br>
+                                    </address>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
             </div>
         </div>
     </div>

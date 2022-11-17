@@ -6,16 +6,16 @@
 {% endblock title %}
 
 {% block css %}
-	<link rel="stylesheet" type="text/css" href="{% static 'book/css/search.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'book/css/search.css' %}">
 {% endblock %}
 
 {% block extra %}
 
-    <form method="GET" action="{%  url 'book' %}">
+    <form method="GET" action="{% url 'book' %}">
         <div class="main-search-input-wrap">
             <div class="main-search-input fl-wrap">
                 <div class="main-search-input-item">
-                    <input type="text" name="query"  placeholder="Search Books...">
+                    <input type="text" name="query" placeholder="Search Books...">
                     <input type="hidden" value="name" name="search_by">
                 </div>
                 <button class="main-search-button">Search</button>
@@ -35,27 +35,30 @@
         </thead>
         <tbody>
         {% for book, author in book_author_zip %}
-            <tr class='clickable-row' data-href='{% url 'showSpecificBook' id=book.id %}'>
-                <td><a href="{% url 'showSpecificBook' id=book.id %}">{{ book.id }}</a></td>
-                <td>{{ book.name }}</td>
-                <td>{{ book.description }}</td>
-                <td>{{ book.count }}</td>
-                <td>
-                    {% if author|length > 1 %}
-                        (
-                        {% for item in author %}
-                            {{ item.name }} {{ item.surname }},
-                        {% endfor %}
-                        )
-                    {% elif author %}
-                        {% for item in author %}
-                            {{ item.name }} {{ item.surname }}
-                        {% endfor %}
-                    {% else %}
-                        None
-                    {% endif %}
-                </td>
-            </tr>
+            {% if book.count >= 1 %}
+                <tr class='clickable-row' data-href='{% url 'showSpecificBook' id=book.id %}'>
+                    <td><a href="{% url 'showSpecificBook' id=book.id %}">{{ book.id }}</a></td>
+                    <td>{{ book.name }}</td>
+                    <td>{{ book.description }}</td>
+                    <td>{{ book.count }}</td>
+                    <td>
+                        {% if author|length > 1 %}
+                            (
+                            {% for item in author %}
+                                {{ item.name }} {{ item.surname }},
+                            {% endfor %}
+                            )
+                        {% elif author %}
+                            {% for item in author %}
+                                {{ item.name }} {{ item.surname }}
+                            {% endfor %}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endif %}
+
         {% endfor %}
 
         </tbody>
