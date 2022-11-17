@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+
+from book.models import Book
 from .models import Author
 
 
@@ -32,6 +34,15 @@ def createAuthor(request):
     if request.user.role != 1:
         text = 'You have no permission to view this page'
         return render(request, 'authentication/denied.html', {'text': text})
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        surname = request.POST.get('surname')
+        patronymic = request.POST.get('patronymic')
+        our_author = Author.create(name, surname, patronymic)
+        books = request.POST.get('books')
+        books_list = books.split(',')
+        for book_id in books_list:
+            Book.get_by_id(book_id).add_authors(authors=[our_author])
     print(request.path)
     return render(request, 'author/create_author.html')
 
