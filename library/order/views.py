@@ -36,6 +36,6 @@ def createOrder(request):
 def removeOrder(request):
     order_id = request.POST.get('order_id')
     our_order = Order.objects.get(id=order_id)
-    our_order.end_at = datetime.datetime.now()
+    our_order.update(end_at=datetime.datetime.now())
     return redirect('order')
 
