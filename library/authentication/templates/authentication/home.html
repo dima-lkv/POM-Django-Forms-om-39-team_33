@@ -38,40 +38,40 @@
 
             <a href="{% url 'logout' %}">
                 <button type="button" class="btn btn-danger"
-                        style="position: absolute; right: 0; top: 0; margin: 30px">Logout
+                        style="position: fixed; right: 0; top: 0; margin: 30px">Logout
                 </button>
             </a>
 
             <a href="{% url 'home' %}">
                 <button type="button" {% if request.path == '/' %} disabled {% endif %} class="btn btn-success"
-                        style="position: absolute; left: 0; top: 0; margin: 30px; width: 80px">Home
+                        style="position: fixed; left: 0; top: 0; margin: 30px; width: 80px">Home
                 </button>
             </a>
 
             <a href="{% url 'author' %}">
                 <button type="button" {% if request.path == '/author/' %} disabled {% endif %} class="btn btn-info"
-                        style="position: absolute; left: 0; top: 0; margin: 30px 0 0 130px; width: 90px">Authors
+                        style="position: fixed; left: 0; top: 0; margin: 30px 0 0 130px; width: 90px">Authors
                 </button>
             </a>
 
 
             <a href="{% url 'book' %}">
                 <button type="button" {% if request.path == '/book/' %} disabled {% endif %} class="btn btn-info"
-                        style="position: absolute; left: 0; top: 0; margin: 30px 0 0 230px; width: 90px">Books
+                        style="position: fixed; left: 0; top: 0; margin: 30px 0 0 230px; width: 90px">Books
                 </button>
             </a>
 
 
             <a href="{% url 'order' %}">
                 <button type="button" {% if request.path == '/order/' %} disabled {% endif %} class="btn btn-info"
-                        style="position: absolute; left: 0; top: 0; margin: 30px 0 0 330px; width: 90px">Orders
+                        style="position: fixed; left: 0; top: 0; margin: 30px 0 0 330px; width: 90px">Orders
                 </button>
             </a>
 
 
             <a href="{% url 'user' %}">
                 <button type="button" {% if request.path == '/user/' %} disabled {% endif %} class="btn btn-info"
-                        style="position: absolute; left: 0; top: 0; margin: 30px 0 0 430px; width: 90px">Users
+                        style="position: fixed; left: 0; top: 0; margin: 30px 0 0 430px; width: 90px">Users
                 </button>
             </a>
 
@@ -80,14 +80,14 @@
             {% if 'create_author' not in request.path and 'author' in request.path %}
                 <a href="{% url 'create_author' %}">
                     <button type="button" class="btn btn-success"
-                            style="position: absolute; right: 0; bottom: 0; margin: 60px">Add New Author
+                            style="position: fixed; right: 0; bottom: 0; margin: 60px">Add New Author
                     </button>
                 </a>
             {% endif %}
             {% if 'create_order' not in request.path and 'order' in request.path %}
-                <a href="{% url 'create_order' %}">
+                <a href="{% url 'create_order' %}" >
                     <button type="button" class="btn btn-success"
-                            style="position: absolute; right: 0; bottom: 0; margin: 60px">Create New Order
+                            style="position: fixed; right: 0; bottom: 0; margin: 60px">Create New Order
                     </button>
                 </a>
             {% endif %}

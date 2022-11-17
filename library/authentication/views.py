@@ -9,7 +9,6 @@ from book.models import Book
 from order.models import Order
 
 
-
 def startPage(request):
     return render(request, 'authentication/home.html')
 
@@ -35,14 +34,12 @@ def loginPage(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-
-        # try:
-        #     user = CustomUser.objects.get(email=email)
-        #     user = CustomUser.objects.get(password=password)
-        # except:
-        #     print('User does not exist')
-        #     messages.error(request, 'User does not exist.')
-
+        try:
+            CustomUser.objects.get(email=email)
+        except:
+            print('User does not exist')
+            messages.error(request, 'User does not exist.')
+            return render(request, 'authentication/log.html')
         user = authenticate(request, email=email, password=password)
 
         if user is not None:
