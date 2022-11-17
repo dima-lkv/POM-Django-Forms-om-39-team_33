@@ -79,9 +79,9 @@ class Book(models.Model):
         book.count = count
         with transaction.atomic():
             book.save()
-            if (authors is not None):
-                for elem in authors:
-                    book.authors.add(elem)
+            if book.authors.all():
+                for item in authors:
+                    book.authors.add(item)
             book.save()
         return book
 
