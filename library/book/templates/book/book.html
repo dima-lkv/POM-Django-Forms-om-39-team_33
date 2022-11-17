@@ -18,7 +18,7 @@
         </thead>
         <tbody>
         {% for book, author in book_author_zip %}
-            <tr>
+            <tr class='clickable-row' data-href='{% url 'showSpecificBook' id=book.id %}'>
                 <td><a href="{% url 'showSpecificBook' id=book.id %}">{{ book.id }}</a></td>
                 <td>{{ book.name }}</td>
                 <td>{{ book.description }}</td>
