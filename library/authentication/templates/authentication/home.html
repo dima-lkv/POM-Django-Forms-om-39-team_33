@@ -23,175 +23,66 @@
                 <h1>Orders</h1>
             {% endif %}
 
+            {% if '/user/' in request.path %}
+                <h1>Users</h1>
+            {% endif %}
+
         </div>
 
         {% if request.user.is_authenticated and request.user.role == 1 %}
 
-            <a href="{% url 'logout' %}">
-                <button type="button" class="btn btn-danger"
-                        style="position: absolute; right: 0; top: 0; margin: 30px 30px">Log out
-                </button>
-            </a>
-
-            {% if request.path == '/' %}
-                <a href="{% url 'author' %}">
-                    <button type="button" class="btn btn-info"
-                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 30px">Authors
-                    </button>
-                </a>
-
-                <a href="{% url 'book' %}">
-                    <button type="button" class="btn btn-info"
-                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 135px">Books
-                    </button>
-                </a>
-
-
-                <a href="{% url 'order' %}">
-                    <button type="button" class="btn btn-info"
-                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 220px">Orders
-                    </button>
-                </a>
-
-
-                <a href="{% url 'user' %}">
-                    <button type="button" class="btn btn-info"
-                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 135px">User
-                    </button>
-                </a>
-            {% endif %}
-
-            {% if '/author/' in request.path %}
-                <a href="{% url 'home' %}">
-                    <button type="button" class="btn btn-success"
-                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 30px">Home
-                    </button>
-                </a>
-
-                <a href="{% url 'book' %}">
-                    <button type="button" class="btn btn-info"
-                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 135px">Books
-                    </button>
-                </a>
-
-                <a href="{% url 'order' %}">
-                    <button type="button" class="btn btn-info"
-                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 220px">Orders
-                    </button>
-                </a>
-
-                {% if 'create_author' not in request.path %}
-                    <a href="{% url 'create_author' %}">
-                        <button type="button" class="btn btn-success"
-                                style="position: absolute; right: 0; bottom: 0; margin: 60px">Add New Author
-                        </button>
-                    </a>
-                {% endif %}
-
-            {% endif %}
-            {% if request.path == '/book/' %}
-                <a href="{% url 'home' %}">
-                    <button type="button" class="btn btn-success"
-                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 30px">Home
-                    </button>
-                </a>
-
-                <a href="{% url 'author' %}">
-                    <button type="button" class="btn btn-info"
-                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 120px">Authors
-                    </button>
-                </a>
-
-                <a href="{% url 'order' %}">
-                    <button type="button" class="btn btn-info"
-                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 220px">Orders
-                    </button>
-                </a>
-
-            {% endif %}
-
-            {% if request.path == '/order/' %}
-                <a href="{% url 'home' %}">
-                    <button type="button" class="btn btn-success"
-                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 30px">Home
-                    </button>
-                </a>
-
-                <a href="{% url 'author' %}">
-                    <button type="button" class="btn btn-info"
-                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 130px">Authors
-                    </button>
-                </a>
-
-                <a href="{% url 'book' %}">
-                    <button type="button" class="btn btn-info"
-                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 235px">Books
-                    </button>
-                </a>
-
-            {% endif %}
-
-        {% elif request.user.is_authenticated %}
 
             <a href="{% url 'logout' %}">
                 <button type="button" class="btn btn-danger"
-                        style="position: absolute; right: 0; top: 0; margin: 30px 30px">Log out
+                        style="position: absolute; right: 0; top: 0; margin: 30px">Logout
                 </button>
             </a>
 
             <a href="{% url 'home' %}">
-                <button type="button" class="btn btn-success"
-                        style="position: absolute; left: 0; top: 0; margin: 30px 0 0 30px">Home
+                <button type="button" {% if request.path == '/' %} disabled {% endif %} class="btn btn-success"
+                        style="position: absolute; left: 0; top: 0; margin: 30px; width: 80px">Home
+                </button>
+            </a>
+
+            <a href="{% url 'author' %}">
+                <button type="button" {% if request.path == '/author/' %} disabled {% endif %} class="btn btn-info"
+                        style="position: absolute; left: 0; top: 0; margin: 30px 0 0 130px; width: 90px">Authors
+                </button>
+            </a>
+
+
+            <a href="{% url 'book' %}">
+                <button type="button" {% if request.path == '/book/' %} disabled {% endif %} class="btn btn-info"
+                        style="position: absolute; left: 0; top: 0; margin: 30px 0 0 230px; width: 90px">Books
+                </button>
+            </a>
+
+
+            <a href="{% url 'order' %}">
+                <button type="button" {% if request.path == '/order/' %} disabled {% endif %} class="btn btn-info"
+                        style="position: absolute; left: 0; top: 0; margin: 30px 0 0 330px; width: 90px">Orders
+                </button>
+            </a>
+
+
+            <a href="{% url 'user' %}">
+                <button type="button" {% if request.path == '/user/' %} disabled {% endif %} class="btn btn-info"
+                        style="position: absolute; left: 0; top: 0; margin: 30px 0 0 430px; width: 90px">Users
                 </button>
             </a>
 
 
 
-            {% if request.path == '/book/' %}
-
-                <a href="{% url 'home' %}">
+            {% if 'create_author' not in request.path and 'author' in request.path %}
+                <a href="{% url 'create_author' %}">
                     <button type="button" class="btn btn-success"
-                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 30px">Home
+                            style="position: absolute; right: 0; bottom: 0; margin: 60px">Add New Author
                     </button>
                 </a>
-
-                <a href="{% url 'logout' %}">
-                    <button type="button" class="btn btn-danger"
-                            style="position: absolute; right: 0; top: 0; margin: 30px 30px">Log out
-                    </button>
-                </a>
-
             {% endif %}
 
-            {% if request.path == '/' %}
 
-                <a href="{% url 'book' %}">
-                    <button type="button" class="btn btn-info"
-                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 30px">Books
-                    </button>
-                </a>
-
-                <a href="{% url 'logout' %}">
-                    <button type="button" class="btn btn-danger"
-                            style="position: absolute; right: 0; top: 0; margin: 30px 30px">Log out
-                    </button>
-                </a>
-
-                <a href="{% url 'order' %}">
-                    <button type="button" class="btn btn-info"
-                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 220px">Orders
-                    </button>
-                </a>
-
-                <a href="{% url 'user' %}">
-                    <button type="button" class="btn btn-info"
-                            style="position: absolute; left: 0; top: 0; margin: 30px 0 0 135px">User
-                    </button>
-                </a>
-
-
-            {% endif %}
-
+        {% elif request.user.is_authenticated %}
 
         {% else %}
 
