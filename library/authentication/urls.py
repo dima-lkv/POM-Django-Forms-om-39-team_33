@@ -11,6 +11,6 @@ urlpatterns = [
     path('author/', include('author.urls')),
     path('book/', include('book.urls')),
     path('order/', include('order.urls')),
-    path('user/<int:id>', views.oneUser, name='specific'),
+    path('user/<int:id>', views.showSpecificUser, name='showSpecificUser'),
 
 ]

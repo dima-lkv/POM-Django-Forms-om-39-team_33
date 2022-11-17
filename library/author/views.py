@@ -10,7 +10,21 @@ def showAuthors(request):
         text = 'You have no permission to view this page'
         return render(request, 'authentication/denied.html', {'text': text})
     authors = Author.objects.all()
-    return render(request, 'author/author.html', {'authors': authors})
+    book_author_zip = zip(get_books(authors), authors)
+    return render(request, 'author/author.html', {'book_author_zip': book_author_zip})
+
+
+def get_books(authors):
+    book_list = []
+    for author in authors:
+        temp = []
+        if list(author.books.all()):
+            for book in author.books.all():
+                temp.append(book)
+            book_list.append(temp)
+        else:
+            book_list.append(None)
+    return book_list
 
 
 @login_required(login_url='login')

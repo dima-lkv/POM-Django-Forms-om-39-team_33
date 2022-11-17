@@ -21,12 +21,17 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'authentication/css/util.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'authentication/css/main.css' %}">
 <!--===============================================================================================-->
+{% block css %}
+
+{% endblock %}
 </head>
 <body>
     {% block content %}
 
     {% endblock content %}
+    {% block scripts %}
 
+    {% endblock %}
   <script src=""></script>
 <!--===============================================================================================-->
 	<script src="{% static 'authentication/vendor/jquery/jquery-3.2.1.min.js' %}"></script>

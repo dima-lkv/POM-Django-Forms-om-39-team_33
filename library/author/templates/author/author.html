@@ -19,14 +19,29 @@
         </tr>
         </thead>
         <tbody>
-        {% for author in authors %}
+        {% for book, author in book_author_zip %}
             <tr>
                 <td>{{ author.id }}</td>
                 <td>{{ author.name }}</td>
                 <td>{{ author.surname }}</td>
                 <td>{{ author.patronymic }}</td>
 
-                <td>{{ author.books }}</td>
+                <td>
+                    {% if book|length > 1 %}
+                        (
+                        {% for item in book %}
+                            {{ item.name }} {{ item.surname }},
+                        {% endfor %}
+                        )
+                    {% elif book %}
+                        {% for item in book %}
+                            {{ item.name }} {{ item.surname }}
+                        {% endfor %}
+                    {% else %}
+                        None
+                    {% endif %}
+                </td>
+
                 {% if author.books %}
                     <td>
                         <form action="{% url 'remove_author' %}" method="post">

@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models, DataError
 
 from authentication.models import CustomUser
@@ -66,7 +68,8 @@ class Order(models.Model):
                 |   'plated_end_at': 1509402866,
                 | }
                 """
-        pass
+
+        datetime.datetime.now().replace(month=12)
 
     @staticmethod
     def create(user, book, plated_end_at):
