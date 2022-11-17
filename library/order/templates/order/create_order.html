@@ -16,14 +16,15 @@
                     <span class="login100-form-title">
 						Create Order
 					</span>
-
-                    <div class="wrap-input100 validate-input" data-validate="Required field">
+                {% if request.user.role == 1 %}
+                    <div class="wrap-input100" >
                         <input class="input100" type="text" name="user_id" placeholder="user id -> 3">
                         <span class="focus-input100"></span>
                         <span class="symbol-input100">
 							<i class="fa" aria-hidden="true"></i>
 						</span>
                     </div>
+                {% endif %}
 
                     <div class="wrap-input100 validate-input" data-validate="Required field">
                         <input class="input100" type="text" name="book_id" placeholder="book id -> 7">

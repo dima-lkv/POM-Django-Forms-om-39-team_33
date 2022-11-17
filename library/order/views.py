@@ -12,18 +12,15 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='login')
 def showOrders(request):
     if request.user.role != 1:
-        text = 'You have no permission to view this page'
-        return render(request, 'authentication/denied.html', {'text': text})
+        orders = Order.objects.filter(id=request.user.id)
+        return render(request, 'order/order.html', {'orders': orders})
     orders = Order.objects.all()
     return render(request, 'order/order.html', {'orders': orders})
 
 
 def createOrder(request):
-    if request.user.role != 1:
-        text = 'You have no permission to view this page'
-        return render(request, 'authentication/denied.html', {'text': text})
     if request.method == 'POST':
-        user_id = request.POST.get('user_id')
+        user_id = int(request.POST.get('user_id')) if request.POST.get('user_id') else request.user.id
         book_id = request.POST.get('book_id')
         user = CustomUser.get_by_id(user_id)
         book = Book.get_by_id(book_id)
