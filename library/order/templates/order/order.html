@@ -27,6 +27,17 @@
                 <td>{{ order.created_at }}</td>
                 <td>{{ order.end_at }}</td>
                 <td>{{ order.plated_end_at }}</td>
+                <td>
+                <td>
+                    <form action="{% url 'remove_order' %}" method="post">
+                        {% csrf_token %}
+                        <input style="color: red;" type="submit" class="btn" name="order_id"
+                               value={{ order.id }}>
+                    </form>
+                </td>
+
+
+                </td>
             </tr>
         {% endfor %}
         </tbody>

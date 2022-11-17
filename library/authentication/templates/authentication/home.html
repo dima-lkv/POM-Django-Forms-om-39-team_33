@@ -84,6 +84,14 @@
                     </button>
                 </a>
             {% endif %}
+            {% if 'create_order' not in request.path and 'order' in request.path %}
+                <a href="{% url 'create_order' %}">
+                    <button type="button" class="btn btn-success"
+                            style="position: absolute; right: 0; bottom: 0; margin: 60px">Create New Order
+                    </button>
+                </a>
+            {% endif %}
+
 
 
         {% elif request.user.is_authenticated %}

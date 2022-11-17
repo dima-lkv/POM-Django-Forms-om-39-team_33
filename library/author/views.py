@@ -43,7 +43,6 @@ def createAuthor(request):
         books_list = books.split(',')
         for book_id in books_list:
             Book.get_by_id(book_id).add_authors(authors=[our_author])
-    print(request.path)
     return render(request, 'author/create_author.html')
 
 
