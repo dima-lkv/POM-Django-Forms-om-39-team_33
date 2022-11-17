@@ -1,69 +1,100 @@
 {% extends 'authentication/home.html' %}
 
 {% load static %}
+
 {% block title %}
-    Users Info {{ user.id }}
-{% endblock title %}
+    Specific
+{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'authentication/css/specific.css' %}">
+{% endblock %}
 
 {% block extra %}
-    {% if request.user.role == 0 %}
-            <table class="table table-dark">
-                <thead>
-                <tr>
-                    <th scope="col"><a>id</a></th>
-                    <th scope="col"><a>first_name</a></th>
-                    <th scope="col"><a>middle_name</a></th>
-                    <th scope="col"><a>last_name</a></th>
-                    <th scope="col"><a>is_active</a></th>
+    <div class="container-fluid">
 
-                </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><a href="{% url 'specific' id=user.id %}">{{ user.id }}</a></td>
-                        <td>{{ user.first_name }}</td>
-                        <td>{{ user.middle_name }}</td>
-                        <td>{{ user.last_name }}</td>
-                        <td>{{ user.is_active }}</td>
+        <div class="container" style="padding-top: 100px">
+            <!-- Main content -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <!-- Details -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="mb-3 d-flex justify-content-between">
+                                <div>
+                                    <span class="me-3">USER ID: {{ user.id }}</span>
+                                    <span class="badge rounded-pill bg-info">
+                                    {% if user.role == 1 %}
+                                        Admin
+                                    {% else %}
+                                        Guest
+                                    {% endif %}
+                                </span>
+                                </div>
+                            </div>
+                            <table class="table table-borderless">
+                                <tbody>
+
+                                <tr>
+                                    <td colspan="2">Name: {{ user.first_name }}</td>
+                                    {#                                <td class="text-end">$159,98</td>#}
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Surname: {{ user.last_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Patronymic: {{ user.middle_name }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Role: {{ user.role }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">Created: {{ user.created_at }}</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                    <!-- Payment -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="h6">User orders</h3>
+                                    {% for order in orders %}
+                                        <p>
+                                            ID: {{ order.id }} Created at: {{ order.created_at }}
+                                            <span class="badge bg-danger rounded-pill">DEBT</span></p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="card mb-4">
+                        <!-- Orders Information -->
+                        <div class="card-body">
+                            <h3 class="h6">Orders Information</h3>
+                            <strong>Order IDs:</strong>
+                            <span>
+                                {% for order in orders %} {{ order.id }}, {% endfor %}
+                                <i class="bi bi-box-arrow-up-right"></i> </span>
+                            <hr>
+                            <h3 class="h6"><strong>Ordered books:</strong></h3>
+                            <address>
+                                {% for order in orders %} <a href="{% url 'showSpecificBook' id=order.book.id %}" style="color: black; font-size: 20px">{{ order.book.name }}</a> <br> Complete to
+                                    {{ order.plated_end_at }} <br><br> {% endfor %}<br>
+                            </address>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
 
-                    </tr>
-                </tbody>
-            </table>
-    {% elif request.user.role == 1 %}
-        <table class="table table-dark">
-                <thead>
-                <tr>
-                    <th scope="col"><a>id</a></th>
-                    <th scope="col"><a>first_name</a></th>
-                    <th scope="col"><a>middle_name</a></th>
-                    <th scope="col"><a>last_name</a></th>
-                    <th scope="col"><a>email</a></th>
-                    <th scope="col"><a>created_at</a></th>
-                    <th scope="col"><a>updated_at</a></th>
-                    <th scope="col"><a>role</a></th>
-                    <th scope="col"><a>is_active</a></th>
-
-                </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><a href="{% url 'specific' id=user.id %}">{{ user.id }}</a></td>
-                        <td>{{ user.first_name }}</td>
-                        <td>{{ user.middle_name }}</td>
-                        <td>{{ user.last_name }}</td>
-                        <td>{{ user.email }}</td>
-                        <td>{{ user.created_at }}</td>
-                        <td>{{ user.updated_at }}</td>
-                        <td>{{ user.role }}</td>
-                        <td>{{ user.is_active }}</td>
 
 
-                    </tr>
-                </tbody>
-            </table>
-
-
-
-    {% endif %}
-{% endblock extra %}

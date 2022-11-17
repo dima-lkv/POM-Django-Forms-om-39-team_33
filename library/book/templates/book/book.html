@@ -9,29 +9,36 @@
     <table class="table table-dark">
         <thead>
         <tr>
-            <th scope="col"><a href="{% url 'book' %}id/">id</a></th>
-            <th scope="col"><a href="{% url 'book' %}name/">Name</a></th>
-            <th scope="col"><a href="{% url 'book' %}description/">Description</a></th>
-            <th scope="col"><a href="{% url 'book' %}count/">Count</a></th>
-            <th scope="col"><a href="{% url 'book' %}author/">Author</a></th>
+            <th scope="col"><a href="{% url 'showOrderedBooks' pk='id' %}">id</a></th>
+            <th scope="col"><a href="{% url 'showOrderedBooks' pk='name' %}">Name</a></th>
+            <th scope="col"><a href="{% url 'showOrderedBooks' pk='description' %}">Description</a></th>
+            <th scope="col"><a href="{% url 'showOrderedBooks' pk='count' %}">Count</a></th>
+            <th scope="col"><a href="#">Author</a></th>
         </tr>
         </thead>
         <tbody>
         {% for book, author in book_author_zip %}
-                <tr>
-                    <td><a href="{% url 'showSpecificBook' id=book.id %}">{{ book.id }}</a></td>
-                    <td>{{ book.name }}</td>
-                    <td>{{ book.description }}</td>
-                    <td>{{ book.count }}</td>
-                    <td>{% if author %}
-                        {% for aut in author %}
-                        {{ aut.name }}
+            <tr>
+                <td><a href="{% url 'showSpecificBook' id=book.id %}">{{ book.id }}</a></td>
+                <td>{{ book.name }}</td>
+                <td>{{ book.description }}</td>
+                <td>{{ book.count }}</td>
+                <td>
+                    {% if author|length > 1 %}
+                        (
+                        {% for item in author %}
+                            {{ item.name }} {{ item.surname }},
                         {% endfor %}
-                        {% else %}
-                        {{ author }}
-                        {% endif %}
-                    </td>
-                </tr>
+                        )
+                    {% elif author %}
+                        {% for item in author %}
+                            {{ item.name }} {{ item.surname }}
+                        {% endfor %}
+                    {% else %}
+                        None
+                    {% endif %}
+                </td>
+            </tr>
         {% endfor %}
 
         </tbody>

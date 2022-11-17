@@ -4,6 +4,10 @@ from .models import CustomUser
 from django.contrib import messages
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
+from author.models import Author
+from book.models import Book
+from order.models import Order
+
 
 
 def startPage(request):
@@ -54,15 +58,35 @@ def logoutUser(request):
     logout(request)
     return redirect('login')
 
+
+# USER
 @login_required(login_url='login')
 def pageUser(request):
     # if request.user.role != 1:
     #     text = 'You have no permission to view this page'
     #     return render(request, 'authentication/denied.html', {'text': text})
-    users = CustomUser.objects.all()
+    users = CustomUser.objects.order_by('id')
     return render(request, 'authentication/user.html', {'users': users})
 
-def oneUser(request, id):
-    user = CustomUser.objects.get(id=id)
-    return render(request, 'authentication/specificUser.html', {'user': user})
 
+def showSpecificUser(request, id):
+    user_obj = CustomUser.objects.get(id=id)
+    return render(request, 'authentication/specificUser.html',
+                  {'user': user_obj, 'orders': get_orders_by_user_id(id), 'books': get_books_by_user_id(id)})
+
+
+def get_orders_by_user_id(user_id):
+    orders_list = []
+    orders_query = Order.objects.filter(user_id=user_id)
+    for order in orders_query:
+        orders_list.append(order)
+    return orders_list
+
+
+def get_books_by_user_id(user_id):
+    books_list = []
+    orders_list = get_orders_by_user_id(user_id)
+    for order in orders_list:
+        books_list.append(Book.objects.get(id=order.book_id))
+    print(books_list)
+    return books_list

@@ -10,23 +10,18 @@
                 <thead>
                 <tr>
                     <th scope="col"><a>id</a></th>
-                    <th scope="col"><a>first_name</a></th>
-                    <th scope="col"><a>middle_name</a></th>
-                    <th scope="col"><a>last_name</a></th>
-                    <th scope="col"><a>is_active</a></th>
-
+                    <th scope="col"><a>name</a></th>
+                    <th scope="col"><a>surname</a></th>
+                    <th scope="col"><a>patronymic</a></th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for user in users %}
                     <tr>
-                        <td><a href="{% url 'specific' id=user.id %}">{{ user.id }}</a></td>
+                        <td><a href="{% url 'showSpecificUser' id=user.id %}">{{ user.id }}</a></td>
                         <td>{{ user.first_name }}</td>
-                        <td>{{ user.middle_name }}</td>
                         <td>{{ user.last_name }}</td>
-                        <td>{{ user.is_active }}</td>
-
-
+                        <td>{{ user.middle_name }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>
