@@ -17,7 +17,23 @@
 {% block extra %}
 
     <form method="GET" action="{% url 'book' %}">
-        <div class="main-search-input-wrap">
+        <div class="form-check" style="translate: 770px 5px">
+            <input class="form-check-input" type="radio" name="role"
+                   id="exampleRadios2" value="1">
+            <label class="form-check-label" for="exampleRadios1" style="color: white; translate: -20px">
+                name
+            </label>
+        </div>
+        <div class="form-check" style="translate: 770px 5px">
+            <input class="form-check-input" type="radio" name="role"
+                   id="exampleRadios2" value="1">
+            <label class="form-check-label" for="exampleRadios1" style="color: white; translate: -20px">
+                author
+            </label>
+        </div>
+
+
+        <div class="main-search-input-wrap" style="translate: 0;">
             <div class="main-search-input fl-wrap">
                 <div class="main-search-input-item">
                     <input type="text" name="query" placeholder="Search Books...">
@@ -27,6 +43,9 @@
             </div>
         </div>
     </form>
+
+
+
 
     <table class="table table-dark">
         <thead>
@@ -43,7 +62,8 @@
             {% if book.count >= 1 %}
                 <tr class='clickable-row' data-href='{% url 'showSpecificBook' id=book.id %}'>
                     <td><a href="{% url 'showSpecificBook' id=book.id %}" style="font-size: 20px">{{ book.id }}</a></td>
-                    <td><a href="{% url 'showSpecificBook' id=book.id %}" style="font-size: 20px">{{ book.name }}</a></td>
+                    <td><a href="{% url 'showSpecificBook' id=book.id %}" style="font-size: 20px">{{ book.name }}</a>
+                    </td>
                     <td>{{ book.description }}</td>
                     <td>{{ book.count }}</td>
                     <td>
