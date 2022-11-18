@@ -19,7 +19,7 @@
                 {% for user in users %}
                     <tr>
                         <td><a href="{% url 'showSpecificUser' id=user.id %}">{{ user.id }}</a></td>
-                        <td>{{ user.first_name }}</td>
+                        <td><a href="{% url 'showSpecificUser' id=user.id %}" style="font-size: 20px">{{ user.first_name }}</a></td>
                         <td>{{ user.last_name }}</td>
                         <td>{{ user.middle_name }}</td>
                     </tr>
