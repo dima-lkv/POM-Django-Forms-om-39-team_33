@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from itertools import chain
 from author.models import Author
 from .models import Book
 from django.contrib.auth.decorators import login_required
@@ -11,16 +11,17 @@ def showBooks(request):
     #books_query = Book.objects.filter(name__name__icontains=q)
     search_by = request.GET.get('search_by')
     query = request.GET.get('query')
+    print(search_by)
+    print(query)
     if search_by == 'name':
-        books_query = Book.objects.filter(name=query)
+        books_query = Book.objects.all()
+        books_needed = books_query.filter(name__contains=query)
     elif search_by == 'author':
-        books_query = Book.objects.filter(authors=query)
-        result = get_authors(books_query)
-        print(result)
-
+        books_query = Book.objects.all()
+        books_needed = books_query.filter(authors__name__contains=query)
     else:
-        books_query = Book.objects.order_by('id')
-    book_author_zip = zip(books_query, get_authors(books_query))
+        books_needed = Book.objects.order_by('id')
+    book_author_zip = zip(books_needed, get_authors(books_needed))
     return render(request, 'book/book.html', {'book_author_zip': book_author_zip})
 
 
