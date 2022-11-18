@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from author.models import Author
 from .models import Book
 from django.contrib.auth.decorators import login_required
 
@@ -50,3 +52,16 @@ def showOrderedBooks(request, pk):
 def showSpecificBook(request, id):
     book_obj = Book.objects.get(id=id)
     return render(request, 'book/specificBook.html', {'book': book_obj, 'authors': get_authors(book_obj)})
+
+@login_required(login_url='login')
+def createBook(request):
+    if request.user.role != 1:
+        text = 'You have no permission to view this page'
+        return render(request, 'authentication/denied.html', {'text': text})
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        description = request.POST.get('description')
+        count = request.POST.get('count')
+        Book.create(name=name, description=description, count=count)
+    return render(request, 'book/create_book.html')
+

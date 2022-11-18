@@ -7,6 +7,11 @@
 
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'book/css/search.css' %}">
+    <style>
+        .table-dark {
+            translate: 0 -150px 0;
+        }
+    </style>
 {% endblock %}
 
 {% block extra %}
@@ -37,8 +42,8 @@
         {% for book, author in book_author_zip %}
             {% if book.count >= 1 %}
                 <tr class='clickable-row' data-href='{% url 'showSpecificBook' id=book.id %}'>
-                    <td><a href="{% url 'showSpecificBook' id=book.id %}">{{ book.id }}</a></td>
-                    <td>{{ book.name }}</td>
+                    <td><a href="{% url 'showSpecificBook' id=book.id %}" style="font-size: 20px">{{ book.id }}</a></td>
+                    <td><a href="{% url 'showSpecificBook' id=book.id %}" style="font-size: 20px">{{ book.name }}</a></td>
                     <td>{{ book.description }}</td>
                     <td>{{ book.count }}</td>
                     <td>

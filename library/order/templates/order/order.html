@@ -30,16 +30,18 @@
                 <td>
                     {% if request.user.role == 1 %}
                         <td>
-                            <form action="{% url 'remove_order' %}" method="post">
-                                {% csrf_token %}
-                                <input style="color: red;" type="submit" class="btn" name="order_id"
-                                       value={{ order.id }}>
-                            </form>
+                            {% if not order.end_at %}
+                                <form action="{% url 'remove_order' id=order.id %}" method="post">
+                                    {% csrf_token %}
+                                    <input style="color: red;" type="submit" class="btn" name="order_id"
+                                           value=Delete>
+                                </form>
+                            {% else %}
+                                <h6 style="color: red">Canceled</h6>
+                            {% endif %}
+
                         </td>
                     {% endif %}
-
-
-                </td>
             </tr>
         {% endfor %}
         </tbody>

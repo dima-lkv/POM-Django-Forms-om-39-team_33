@@ -1,0 +1,61 @@
+{% extends 'authentication/home.html' %}
+
+{% load static %}
+{% block title %}
+    Add Book
+{% endblock title %}
+
+{% block extra %}
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100" style="padding-top: 80px; width: fit-content">
+
+                <form action="{% url 'create_book' %}" class="login100-form validate-form" method="post"
+                      style="background: none; margin-left: 25px">
+                    {% csrf_token %}
+                    <span class="login100-form-title">
+						Add Book
+					</span>
+
+                    <div class="wrap-input100 validate-input" data-validate="Required field">
+                        <input class="input100" type="text" name="name" placeholder="name">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+							<i class="fa" aria-hidden="true"></i>
+						</span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Required field">
+                        <input class="input100" type="text" name="description" placeholder="description">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+							<i class="fa" aria-hidden="true"></i>
+						</span>
+                    </div>
+
+                    <div class="wrap-input100 validate-input" data-validate="Required field">
+                        <input class="input100" type="text" name="count" placeholder="count">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+							<i class="fa" aria-hidden="true"></i>
+						</span>
+                    </div>
+
+                    {% if messages %}
+                        {% for message in messages %}
+                            <ul class="messages" style="padding-left: 30px">
+                                <li>{{ message }}</li>
+                            </ul>
+                        {% endfor %}
+                    {% endif %}
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" type="submit">
+                            Create
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock extra %}

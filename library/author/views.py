@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -39,14 +40,17 @@ def createAuthor(request):
         surname = request.POST.get('surname')
         patronymic = request.POST.get('patronymic')
         our_author = Author.create(name, surname, patronymic)
+        if not request.POST.get('books'):
+            messages.error(request, 'No book with such id.')
+            return redirect('create_author')
         books = request.POST.get('books')
         books_list = books.split(',')
         for book_id in books_list:
-            Book.get_by_id(book_id).add_authors(authors=[our_author])
+            if Book.get_by_id(book_id):
+                Book.get_by_id(book_id).add_authors(authors=[our_author])
     return render(request, 'author/create_author.html')
 
 
-def removeAuthor(request):
-    author_id = request.POST.get('author_id')
-    Author.delete_by_id(author_id)
+def removeAuthor(request, id):
+    Author.delete_by_id(id)
     return redirect('author')
