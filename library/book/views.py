@@ -13,6 +13,9 @@ def showBooks(request):
     query = request.GET.get('query')
     if search_by == 'name':
         books_query = Book.objects.filter(name=query)
+    elif search_by == 'author':
+        books_query = Book.objects.filter(name=query)
+
     else:
         books_query = Book.objects.order_by('id')
     book_author_zip = zip(books_query, get_authors(books_query))
@@ -30,7 +33,6 @@ def get_authors(books):
                 authors_list.append(author)
         else:
             authors_list.append(None)
-        print(authors_list)
     else:
         for book in books:
             temp = []

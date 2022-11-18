@@ -4,7 +4,7 @@ body{
 
 .main-search-input {
     position: fixed;
-    translate: 50px -140% 0;
+    translate: 0 -90% 0;
     left: 100%;
     background: #fff;
     border-radius: 1px;
