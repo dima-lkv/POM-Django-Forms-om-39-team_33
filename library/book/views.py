@@ -11,9 +11,20 @@ def searchBooks(request):
     query = request.GET.get('query')
     if not query:
         return showBooks(request)
+    by_id, by_count = None, None
+    try:
+        by_id = Book.objects.all().filter(id=int(query))
+        by_count = Book.objects.all().filter(count=int(query))
+    except:
+        print('no int')
     by_name = Book.objects.all().filter(name__contains=query)
-    by_author = Book.objects.all().filter(authors__name__contains=query)
-    result_list = list(chain(by_name, by_author))
+    by_description = Book.objects.all().filter(description__contains=query)
+    by_author_name = Book.objects.all().filter(authors__name__contains=query)
+    by_author_surname = Book.objects.all().filter(authors__surname__contains=query)
+    if by_id or by_count:
+        result_list = list(chain(by_id, by_name, by_count, by_description, by_author_name, by_author_surname))
+    else:
+        result_list = list(chain(by_name, by_description, by_author_name, by_author_surname))
     book_author_zip = zip(result_list, get_authors(result_list))
     return render(request, 'book/book.html', {'book_author_zip': book_author_zip})
 
