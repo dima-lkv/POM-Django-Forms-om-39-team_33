@@ -15,7 +15,9 @@
             <th scope="col"><a href="#">Book ID</a></th>
             <th scope="col"><a href="#">Created</a></th>
             <th scope="col"><a href="#">Planned end</a></th>
-            <th scope="col"><a href="#">Ended at</a></th>
+            {% if request.user.role == 1 %}
+                <th scope="col"><a href="#">Ended at</a></th>
+            {% endif %}
         </tr>
         </thead>
         <tbody>
@@ -26,20 +28,18 @@
                 <td>{{ order.book_id }}</td>
                 <td>{{ order.created_at }}</td>
                 <td>{{ order.plated_end_at }}</td>
-                    {% if request.user.role == 1 %}
-                        <td>
-                            {% if not order.end_at %}
-                                <form action="{% url 'remove_order' id=order.id %}" method="post">
-                                    {% csrf_token %}
-                                    <input style="color: red;" type="submit" class="btn" name="order_id"
-                                           value=Delete>
-                                </form>
-                            {% else %}
-                                <h6 style="color: red">{{ order.end_at }}</h6>
-                            {% endif %}
-
-                        </td>
-                    {% endif %}
+                {% if request.user.role == 1 %}
+                    <td>
+                        {% if not order.end_at %}
+                            <form action="{% url 'remove_order' id=order.id %}" method="post">
+                                {% csrf_token %}
+                                <input style="color: red;" type="submit" class="btn" name="order_id" value=Delete>
+                            </form>
+                        {% else %}
+                            <h6 style="color: red">{{ order.end_at }}</h6>
+                        {% endif %}
+                    </td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>
