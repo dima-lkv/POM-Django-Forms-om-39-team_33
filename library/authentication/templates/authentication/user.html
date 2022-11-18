@@ -2,26 +2,32 @@
 
 {% load static %}
 {% block title %}
-    Users Info
+    Users
 {% endblock title %}
 
 {% block extra %}
             <table class="table table-dark">
                 <thead>
                 <tr>
-                    <th scope="col"><a>id</a></th>
-                    <th scope="col"><a>name</a></th>
-                    <th scope="col"><a>surname</a></th>
-                    <th scope="col"><a>patronymic</a></th>
+                    <th scope="col"><a>ID</a></th>
+                    <th scope="col"><a>Email</a></th>
+                    <th scope="col"><a>Name</a></th>
+                    <th scope="col"><a>Role</a></th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for user in users %}
                     <tr>
                         <td><a href="{% url 'showSpecificUser' id=user.id %}">{{ user.id }}</a></td>
-                        <td><a href="{% url 'showSpecificUser' id=user.id %}" style="font-size: 20px">{{ user.first_name }}</a></td>
-                        <td>{{ user.last_name }}</td>
-                        <td>{{ user.middle_name }}</td>
+                        <td><a href="{% url 'showSpecificUser' id=user.id %}" style="font-size: 20px">{{ user.email }}</a></td>
+                        <td>{{ user.first_name }}</td>
+                        <td>
+                            {% if user.role == 1 %}
+                                Librarian
+                            {% else %}
+                                User
+                            {% endif %}
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>

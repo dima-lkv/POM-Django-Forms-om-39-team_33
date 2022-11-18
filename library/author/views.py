@@ -12,7 +12,7 @@ def showAuthors(request):
     if request.user.role != 1:
         text = 'You have no permission to view this page'
         return render(request, 'authentication/denied.html', {'text': text})
-    authors = Author.objects.all()
+    authors = Author.objects.order_by('id')
     book_author_zip = zip(get_books(authors), authors)
     return render(request, 'author/author.html', {'book_author_zip': book_author_zip})
 
