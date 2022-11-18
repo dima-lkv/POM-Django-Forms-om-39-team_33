@@ -12,7 +12,7 @@ def showOrders(request):
     if request.user.role != 1:
         orders = Order.objects.filter(user_id=request.user.id)
         return render(request, 'order/order.html', {'orders': orders})
-    orders = Order.objects.all()
+    orders = reversed(Order.objects.order_by('id'))
     return render(request, 'order/order.html', {'orders': orders})
 
 
@@ -26,8 +26,12 @@ def createOrder(request):
         user = CustomUser.get_by_id(user_id)
         book = Book.get_by_id(book_id)
         plated_end_at = request.POST.get('plated_end_at')
-        plated_end_at = plated_end_at.split('-')
-        time = datetime.datetime.now().replace(year=int(plated_end_at[0]), month=int(plated_end_at[1]), day=int(plated_end_at[2]))
+        try:
+            time = datetime.datetime.now().replace(day=datetime.datetime.now().day+int(plated_end_at))
+        except:
+            time = datetime.datetime.now().replace(month=datetime.datetime.now().month+1,
+                                                   day=datetime.datetime.now().day+(int(plated_end_at)-30))
+
         if book.count <= 0:
             messages.error(request, 'The book was disassembled.')
             return redirect('create_order')
