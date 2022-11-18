@@ -43,5 +43,6 @@ def createOrder(request):
 def removeOrder(request, id):
     our_order = Order.objects.get(id=id)
     our_order.update(end_at=datetime.datetime.now())
+    Book.get_by_id(our_order.book_id).update(count=Book.get_by_id(our_order.book_id).count+1)
     return redirect('order')
 

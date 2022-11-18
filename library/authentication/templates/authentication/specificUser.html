@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block title %}
-    Specific
+    Info User
 {% endblock %}
 
 {% block css %}
@@ -88,9 +88,11 @@
                                     <h3 class="h6"><strong>Ordered books:</strong></h3>
                                     <address>
                                         {% for order in orders %}
+                                            {% if not order.end_at %}
                                             <a href="{% url 'showSpecificBook' id=order.book.id %}"
                                                style="font-size: 20px">{{ order.book.name }}</a>
                                             <br> Complete to {{ order.plated_end_at }} <br><br>
+                                            {% endif %}
                                         {% endfor %}
                                         <br>
                                     </address>
