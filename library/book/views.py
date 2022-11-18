@@ -14,7 +14,9 @@ def showBooks(request):
     if search_by == 'name':
         books_query = Book.objects.filter(name=query)
     elif search_by == 'author':
-        books_query = Book.objects.filter(name=query)
+        books_query = Book.objects.filter(authors=query)
+        result = get_authors(books_query)
+        print(result)
 
     else:
         books_query = Book.objects.order_by('id')
