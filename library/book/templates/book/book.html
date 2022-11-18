@@ -17,29 +17,34 @@
 {% block extra %}
 
     <form method="GET" action="{% url 'book' %}">
+        <fieldset class="form-group">
+            <div class="row">
+                <div class="col-sm-10">
         <div class="form-check" style="translate: 770px 5px">
-            <input class="form-check-input" type="radio" name="role"
-                   id="exampleRadios2" value="1">
+            <input class="form-check-input" type="radio" name="search_by"
+                   id="exampleRadios1" value="name" checked>
             <label class="form-check-label" for="exampleRadios1" style="color: white; translate: -20px">
                 name
             </label>
         </div>
         <div class="form-check" style="translate: 770px 5px">
-            <input class="form-check-input" type="radio" name="role"
-                   id="exampleRadios2" value="1">
-            <label class="form-check-label" for="exampleRadios1" style="color: white; translate: -20px">
+            <input class="form-check-input" type="radio" name="search_by"
+                   id="exampleRadios2" value="author">
+            <label class="form-check-label" for="exampleRadios2" style="color: white; translate: -20px">
                 author
             </label>
         </div>
-
+                </div>
+            </div>
+        </fieldset>
 
         <div class="main-search-input-wrap" style="translate: 0;">
             <div class="main-search-input fl-wrap">
                 <div class="main-search-input-item">
                     <input type="text" name="query" placeholder="Search Books...">
-                    <input type="hidden" value="name" name="search_by">
+
                 </div>
-                <button class="main-search-button">Search</button>
+                <button type="submit" class="main-search-button">Search</button>
             </div>
         </div>
     </form>
