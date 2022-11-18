@@ -1,25 +1,26 @@
 from django.shortcuts import render
-
+from itertools import chain
 from author.models import Author
 from .models import Book
 from django.contrib.auth.decorators import login_required
+from operator import attrgetter
+
+
+@login_required(login_url='login')
+def searchBooks(request):
+    query = request.GET.get('query')
+    if not query:
+        return showBooks(request)
+    by_name = Book.objects.all().filter(name__contains=query)
+    by_author = Book.objects.all().filter(authors__name__contains=query)
+    result_list = list(chain(by_name, by_author))
+    book_author_zip = zip(result_list, get_authors(result_list))
+    return render(request, 'book/book.html', {'book_author_zip': book_author_zip})
 
 
 @login_required(login_url='login')
 def showBooks(request):
-    #q = request.GET.get('q') if request.GET.get('q') != None else ''
-    #books_query = Book.objects.filter(name__name__icontains=q)
-    search_by = request.GET.get('search_by')
-    query = request.GET.get('query')
-    if search_by == 'name':
-        books_query = Book.objects.filter(name=query)
-    elif search_by == 'author':
-        books_query = Book.objects.filter(authors=query)
-        result = get_authors(books_query)
-        print(result)
-
-    else:
-        books_query = Book.objects.order_by('id')
+    books_query = Book.objects.order_by('id')
     book_author_zip = zip(books_query, get_authors(books_query))
     return render(request, 'book/book.html', {'book_author_zip': book_author_zip})
 
