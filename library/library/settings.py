@@ -87,7 +87,7 @@ DATABASE = "simpledbmamager"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'team15',
+        'NAME': 'sprint15',
         'USER': 'dima',
         'PASSWORD': '',
         'HOST': 'localhost',

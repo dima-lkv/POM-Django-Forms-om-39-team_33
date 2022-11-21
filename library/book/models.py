@@ -24,11 +24,7 @@ class Book(models.Model):
         Magic method is redefined to show all information about Book.
         :return: book id, book name, book description, book count, book authors
         """
-        return f"'id': {self.id}," \
-               f" 'name': '{self.name}'," \
-               f" 'description': '{self.description}'," \
-               f" 'count': {self.count}," \
-               f" 'authors': {[author.id for author in self.authors.all()]}"
+        return f'{self.name}'
 
     def __repr__(self):
         """
