@@ -1,5 +1,6 @@
 from django.db import models, transaction
 
+
 class Book(models.Model):
     """
         This class represents an Author. \n
@@ -18,6 +19,8 @@ class Book(models.Model):
     description = models.CharField(blank=True, max_length=256)
     count = models.IntegerField(default=10)
     id = models.AutoField(primary_key=True)
+    publicationYear = models.IntegerField(blank=True, null=True)
+    issueYear = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         """
